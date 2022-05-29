@@ -47,13 +47,13 @@ export const login = async (req, res, next) => {
 export const infoUser = async (req, res, next) => {
     
     try {
-        const getUser = await User.find(req.query);;
+        const getUser = await User.findOne({email: req.params.email});;
         
         res.status(200).json({ 
             status: 200, 
             result: getUser.length,
             error: false, 
-            data: getUser })
+            data: [getUser] })
     } catch (error) {
         next(error)
     }
