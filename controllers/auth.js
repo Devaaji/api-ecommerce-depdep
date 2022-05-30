@@ -58,12 +58,3 @@ export const infoUser = async (req, res, next) => {
         next(error)
     }
 }
-// export const infoUser = async (req, res, next) => {
-    
-//     try {
-//         const user = await User.findOne({ email: req.params.email });
-//         res.status(200).json({ status: 200, error: false, data: [{ id_user: user.id, username: user.username, email: user.email, isAdmin: user.isAdmin }] })
-//     } catch (error) {
-//         next(error)
-//     }
-// }
