@@ -4,7 +4,7 @@ import { verifyInfoUser } from '../utils/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/:email', verifyInfoUser, infoUser);
+router.get('/me', verifyInfoUser, infoUser);
 router.post('/register', register)
 router.post('/login', login)
 

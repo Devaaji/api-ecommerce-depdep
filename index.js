@@ -56,6 +56,23 @@ app.use((err, req, res, next) => {
     })
 });
 
+let o1 = {
+    nama: 'nama',
+    alamat: 'alamat',
+    umur: 23
+}
+
+let o2 = {
+    lulusan: 'Tahun 2000',
+    tamat: [{ tahun: "1999", namaSekolah: "SMA 1 tegi"}, { tahun: "1988", namaSekolah: "SMP Tegi"}]
+}
+
+
+console.log({
+    ...o1,
+    ...o2
+})
+
 app.listen(process.env.PORT, () => {
     connect()
     console.log(`Conneted on port ${process.env.PORT}`)

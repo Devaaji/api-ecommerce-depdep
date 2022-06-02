@@ -31,8 +31,9 @@ export const verifyUser = (req, res, next) => {
 }
 
 export const verifyInfoUser = (req, res, next) => {
+    console.log(req.query.email)
     verifyToken(req, res, () => {
-        if (req.user.email === req.params.email) {
+        if (req.user.email === req.query.email) {
             next()
         } else {
             if (error)

@@ -5,3 +5,12 @@ export const createError = (status, message) => {
     err.message = message;
     return err;
 };
+
+export const responSuccess = ({message, data}) => {
+    return {
+        "status" : true,
+        "code": 200,
+        "message" : message ? message: "berhasil",
+        "data:": data
+    }
+}
