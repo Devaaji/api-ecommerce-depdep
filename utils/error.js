@@ -11,6 +11,6 @@ export const responSuccess = ({message, data}) => {
         "status" : true,
         "code": 200,
         "message" : message ? message: "berhasil",
-        "data:": data
+        "data" : data
     }
 }
