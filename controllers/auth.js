@@ -26,6 +26,7 @@ export const register = async (req, res, next) => {
 }
 
 export const login = async (req, res, next) => {
+    const expiredToken = 86400;
     const user = await User.findOne({ email: req.body.email });
     if (!user) return next(createError(404, 'Wrong email or passsword!'));
 
@@ -34,10 +35,10 @@ export const login = async (req, res, next) => {
         if (!isPasswordCorrrect) return next(createError(404, 'Wrong email or passsword!'));
 
     const token = jwt.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, process.env.JWT_SECRET_KEY, {
-        expiresIn: 86400
+        expiresIn: expiredToken
     });
 
-    res.status(200).send({ status: 200, error: false, data: { messages: "Login Sucess!", token: token, email: user.email } })
+    res.status(200).send({ status: 200, error: false, data: { messages: "Login Sucess!", token: token, expiresIn: expiredToken, email: user.email } })
     try {
     } catch (error) {
         next(error);
@@ -51,7 +52,7 @@ export const infoUser = async (req, res, next) => {
         console.log(req.query.email)
         
         res.status(200).json(responSuccess({
-            data: [getUser]
+            data: [getUser.email]
         }))
     } catch (error) {
         next(error)
