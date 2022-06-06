@@ -68,6 +68,7 @@ let o2 = {
 }
 
 
+
 console.log({
     ...o1,
     ...o2

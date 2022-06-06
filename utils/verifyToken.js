@@ -4,7 +4,7 @@ import { createError } from './error.js';
 export const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
-    if (authHeader) {
+    if (authHeader !== undefined) {
         const token = authHeader.split(" ")[1];
 
         jwt.verify(token, process.env.JWT_SECRET_KEY, (error, user) => {
@@ -13,7 +13,11 @@ export const verifyToken = (req, res, next) => {
             next()
         });
     }else{
-        return next(createError(401, 'Your not authenticated!'))
+        return res.status(401).json({
+            status: false,
+            code: 401,
+            message: "Your not authenticated!"
+        })
     }
    
 
@@ -31,7 +35,6 @@ export const verifyUser = (req, res, next) => {
 }
 
 export const verifyInfoUser = (req, res, next) => {
-    console.log(req.query.email)
     verifyToken(req, res, () => {
         if (req.user.email === req.query.email) {
             next()
