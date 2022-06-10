@@ -46,14 +46,23 @@ export const login = async (req, res, next) => {
 }
 
 export const infoUser = async (req, res, next) => {
-    
+
     try {
-        const getUser = await User.findOne({email: req.query.email});
+        const getUser = await User.findOne({ email: req.query.email });
         console.log(req.query.email)
-        
-        res.status(200).json(responSuccess({
-            data: [getUser.email]
-        }))
+
+        res.status(200).json({
+            status: 200,
+            error: false,
+            data: [
+                { 
+                    _id: getUser._id,
+                    email: getUser.email,
+                    username: getUser.username,
+                    isAdmin: getUser.isAdmin
+                }
+            ]
+        })
     } catch (error) {
         next(error)
     }
