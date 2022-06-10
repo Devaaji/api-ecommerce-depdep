@@ -5,9 +5,13 @@ import cookieParser from 'cookie-parser';
 
 import authRoute from './routes/auth.js';
 import hotelRoute from './routes/hotels.js';
+import productRoute from './routes/products.js';
 import userRoute from './routes/users.js';
 import roomsRoute from './routes/rooms.js';
+import multer from 'multer';
 import cors from 'cors';
+
+
 
 const app = express();
 dotenv.config();
@@ -43,6 +47,7 @@ app.use('/api/rooms', roomsRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/hotels', hotelRoute);
 app.use('/api/users', userRoute);
+app.use('/api/products', productRoute);
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
