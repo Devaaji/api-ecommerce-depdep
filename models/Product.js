@@ -21,7 +21,7 @@ const ProductSchema = new mongoose.Schema({
     stock:{
         type: Number,
     },
-    desc: {
+    descProduct: {
         type: String,
     }
 });
